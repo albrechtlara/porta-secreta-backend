@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4000; // Porta dinâmica ou padrão 4000
 
 // Middleware
 app.use(bodyParser.json());
@@ -14,8 +14,8 @@ app.use(cors());
 const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "albrechtlara@gmail.com", // Seu e-mail
-        pass: "izjk wniy hutb tlgr",       // A senha do aplicativo do Gmail
+        user: "albrechtlara@gmail.com", // Substitua pelo seu e-mail
+        pass: "izjk wniy hutb tlgr",       // Substitua pela senha do aplicativo do Gmail
     },
 });
 
@@ -47,4 +47,5 @@ app.post("/send-email", async (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
+
 
