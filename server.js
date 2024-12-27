@@ -4,11 +4,20 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
+
+// Configuração do transporte de e-mail
+const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: "albrechtlara@gmail.com", // Seu e-mail
+        pass: "izjk wniy hutb tlgr",       // A senha do aplicativo do Gmail
+    },
+});
 
 // Rota para envio de e-mail
 app.post("/send-email", async (req, res) => {
@@ -18,17 +27,9 @@ app.post("/send-email", async (req, res) => {
         return res.status(400).json({ error: "E-mail é obrigatório." });
     }
 
-    const transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-            user: "albrechtlara@gmail.com", // Substitua pelo seu e-mail
-            pass: "izjk wniy hutb tlgr",       // Substitua pela senha ou chave do app
-        }
-    });
-
     const mailOptions = {
-        from: "seu-email@gmail.com",
-        to: "daniel.dante@me.com",
+        from: "albrechtlara@gmail.com", // Seu e-mail
+        to: "daniel.dante@me.com",     // E-mail de destino
         subject: "PortaSurpresa",
         text: `Um jogador entrou no jogo com o e-mail: ${email}`,
     };
@@ -44,6 +45,6 @@ app.post("/send-email", async (req, res) => {
 
 // Inicializa o servidor
 app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+    console.log(`Servidor rodando na porta ${port}`);
 });
 
