@@ -14,8 +14,8 @@ app.use(cors());
 const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "albrechtlara@gmail.com", // Substitua pelo seu e-mail
-        pass: "izjk wniy hutb tlgr",       // Substitua pela senha do aplicativo do Gmail
+        user: "albrechtlara@gmail.com", // Seu e-mail
+        pass: "ihre eixr lmoy lqgb",   // Nova senha do aplicativo gerada no Gmail
     },
 });
 
@@ -47,5 +47,4 @@ app.post("/send-email", async (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
-
 
